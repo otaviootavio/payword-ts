@@ -36,7 +36,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
+      - name: Generate .env
+        run: npx run generate-env
       - name: Install modules
-        run: yarn
+        run: npm install
       - name: Run tests
-        run: yarn test
+        run: npm run test
