@@ -39,6 +39,6 @@ jobs:
       - name: Install modules
         run: npm install
       - name: Generate .env
-        run: npx run generate-env
+        run: npm run generate-env
       - name: Run tests
         run: npm run test
