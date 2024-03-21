@@ -1,8 +1,4 @@
-import { UserCertification } from './types/UserCertification'
-import { PayWord } from './types/PayWord'
-import { UserMessage } from './types/UserMessage'
-import { UserCertificationSigned } from '../src/types'
-import { UserMessageSigned } from './types/UserMessageSigned'
+import { md, sha256, pki } from 'node-forge'
 import {
   UserCertificationSchema,
   UserCertificationSignedSchema,
@@ -11,7 +7,13 @@ import {
   lengthSchema,
   messageInputSchema,
 } from './schemas'
-import { md, sha256, pki } from 'node-forge'
+import {
+  PayWord,
+  UserCertification,
+  UserCertificationSigned,
+  UserMessage,
+  UserMessageSigned,
+} from './types'
 
 export function hash(messageInput: string): string {
   messageInputSchema.parse(messageInput)
@@ -130,4 +132,12 @@ export function verifyUserMessageSigned(
   const { signature, userMessage } = userMessageSigned
 
   return verify(JSON.stringify(userMessage), signature, userPublicKey)
+}
+
+export {
+  PayWord,
+  UserCertification,
+  UserCertificationSigned,
+  UserMessage,
+  UserMessageSigned,
 }
